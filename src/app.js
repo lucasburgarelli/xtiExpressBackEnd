@@ -1,20 +1,22 @@
-import express from 'express';
-import router from './routes';
+const express = require('express')
+const path = require("path")
+require("dotenv").config()
 
-class App {
-  constructor() {
-    this.server = express();
-    this.middlewares();
-    this.routes();
-  }
+const sequelize = require("./helpers/connection")
+//const router = require("./routes")
 
-  middlewares() {
-    this.server.use(express.json());
-  }
 
-  routes() {
-    //this.server.use(router);
-  }
-}
 
-export default new App().server;
+
+const app = express(); 
+
+//middlewares();
+
+app.use(express.json())
+app.use(express.static(path.join(__dirname, 'public')))
+//app.use(router)
+
+
+app.listen(process.env.PORT, () => {
+  console.log("Listenning...")
+})
