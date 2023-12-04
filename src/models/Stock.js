@@ -26,10 +26,10 @@ const StockModel = sequelize.define("Stock",
 )
 
 module.exports = {
-    list: async function(){
+    create: async function(stock){
 
     },
-    save: async function(stock){
+    read: async function(){
 
     },
     update: async function(code, stock){
@@ -37,5 +37,5 @@ module.exports = {
     },
     delete: async function(code){
 
-    },
+    }
 }
