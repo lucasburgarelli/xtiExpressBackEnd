@@ -69,16 +69,47 @@ const SellModel = sequelize.define("Sell",
 
 module.exports = {
     create: async function(sell){
-
+        const sellNew = await SellModel.create(sell)
+        return sellNew
     },
     read: async function(){
-
+        return await SellModel.findAll()
     },
     update: async function(cpf, code, date, time, sell){
+        const sellUpdated = await SellModel.update(sell, {
+            where:{
+                use_cpf: cpf,
+                sto_code: code,
+                sel_date : date,
+                sel_time: time
+            }
+        })
 
+        return sellUpdated
     },
     delete: async function(cpf, code, date, time){
+        const sellDeleted = await SellModel.destroy({
+            where:{
+                use_cpf: cpf,
+                sto_code: code,
+                sel_date : date,
+                sel_time: time
+            }
+        })
 
+        return sellDeleted
+    },
+    readByPk: async function(cpf, code, date, time){
+        const sell = await SellModel.findOne({
+            where:{
+                use_cpf: cpf,
+                sto_code: code,
+                sel_date : date,
+                sel_time: time
+            }
+        })
+
+        return sell
     }
 }
 

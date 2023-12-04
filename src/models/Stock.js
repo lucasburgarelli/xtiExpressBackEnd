@@ -58,15 +58,31 @@ const StockModel = sequelize.define("Stock",
 
 module.exports = {
     create: async function(stock){
-
+        const stockNew = await StockModel.create(stock)
+        return stockNew
     },
     read: async function(){
-
+        return await StockModel.findAll()
     },
     update: async function(code, stock){
+        const stockUpdated = await StockModel.update(stock,
+            {
+                where: {
+                    sto_code: code
+                }
+            })
 
+        return stockUpdated
     },
     delete: async function(code){
-
+        const stockDeleted = await StockModel.destroy({
+            where:{
+                sto_code: code
+            }
+        })
+        return stockDeleted
+    },
+    readByCode: async function(code){
+        return await StockModel.findByPk(code)
     }
 }
