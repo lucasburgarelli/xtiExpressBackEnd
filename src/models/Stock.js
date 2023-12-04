@@ -25,6 +25,8 @@ const StockModel = sequelize.define("Stock",
     }
 )
 
+// TODO Foreign keys
+
 module.exports = {
     create: async function(stock){
 

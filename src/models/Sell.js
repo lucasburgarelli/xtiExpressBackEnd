@@ -35,6 +35,8 @@ const SellModel = sequelize.define("Sell",
 }
 )
 
+// TODO Foreign keys
+
 module.exports = {
     create: async function(sell){
 
