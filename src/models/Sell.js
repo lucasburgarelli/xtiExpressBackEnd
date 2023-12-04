@@ -36,16 +36,16 @@ const SellModel = sequelize.define("Sell",
 )
 
 module.exports = {
-    create: async function(){
+    create: async function(sell){
 
     },
     read: async function(){
 
     },
-    update: async function(){
+    update: async function(cpf, code, date, time, sell){
 
     },
-    delete: async function(){
+    delete: async function(cpf, code, date, time){
 
     }
 }
