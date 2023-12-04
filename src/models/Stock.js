@@ -5,6 +5,7 @@ const StockModel = sequelize.define("Stock",
     {
         sto_code: {
             type: DataTypes.STRING,
+            primaryKey: true,
             allowNull: false
         },
         sto_companyname: {
