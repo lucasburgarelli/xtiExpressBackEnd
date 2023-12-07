@@ -76,6 +76,7 @@ module.exports = {
         use_cpf: cpf,
       },
     });
+    return userUpdate;
   },
   delete: async function (cpf) {
     const userDelete = await UserModel.destroy({
@@ -83,6 +84,7 @@ module.exports = {
         use_cpf: cpf,
       },
     });
+    return userDelete;
   },
   readByPK: async function (cpf) {
     const user = await UserModel.findOne({
