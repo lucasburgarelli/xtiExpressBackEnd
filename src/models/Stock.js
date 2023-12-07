@@ -38,7 +38,6 @@ const StockModel = sequelize.define("Stock",
         sto_sector: {
             type: DataTypes.STRING,
             validate: {
-                notNull: true,
                 len: {
                     args:[0,100],
                     msg: "Stock sector name is bigger than 100"
