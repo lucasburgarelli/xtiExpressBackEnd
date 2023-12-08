@@ -57,6 +57,7 @@ const StockModel = sequelize.define("Stock",
 
 module.exports = {
     create: async function(stock){
+        await console.log(stock)
         const stockNew = await StockModel.create(stock)
         return stockNew
     },
@@ -64,14 +65,14 @@ module.exports = {
         return await StockModel.findAll()
     },
     update: async function(code, stock){
-        const stockUpdated = await StockModel.update(stock,
+        await StockModel.update(stock,
             {
                 where: {
                     sto_code: code
                 }
-            })
+        })
 
-        return stockUpdated
+        return stock
     },
     delete: async function(code){
         const stockDeleted = await StockModel.destroy({
