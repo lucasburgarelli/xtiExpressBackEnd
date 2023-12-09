@@ -7,6 +7,7 @@ const sequelize = require("./helpers/connection");
 const routeStock = require("./routes/stock-route");
 const routeSell = require("./routes/sell-route");
 const routeBuy = require("./routes/buy-route");
+const rouyeBuy = require("./routes/user-route");
 
 const app = express();
 
