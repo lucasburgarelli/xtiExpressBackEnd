@@ -43,7 +43,8 @@ const BuyModel = sequelize.define("Buy", {
     },
   },
   buy_date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
+    defaultValue: DataTypes.NOW,
     primaryKey: true,
     allowNull: false,
     validate: {
@@ -53,6 +54,7 @@ const BuyModel = sequelize.define("Buy", {
   },
   buy_time: {
     type: DataTypes.TIME,
+    defaultValue: DataTypes.NOW,
     primaryKey: true,
     allowNull: false,
     validate: {

@@ -45,9 +45,10 @@ const SellModel = sequelize.define("Sell", {
     },
   },
   sel_date: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     primaryKey: true,
     allowNull: false,
+    defaultValue: DataTypes.NOW,
     validate: {
       notNull: true,
       isDate: true,
@@ -55,6 +56,7 @@ const SellModel = sequelize.define("Sell", {
   },
   sel_time: {
     type: DataTypes.TIME,
+    defaultValue: DataTypes.NOW,
     primaryKey: true,
     allowNull: false,
     validate: {
