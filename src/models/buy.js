@@ -1,5 +1,7 @@
 const { DataTypes, Op } = require("sequelize");
 const sequelize = require("../helpers/connection");
+const UserModel = require("../models/user");
+const StockModel = require("../models/stock");
 
 const BuyModel = sequelize.define("Buy", {
   use_cpf: {
@@ -63,6 +65,9 @@ const BuyModel = sequelize.define("Buy", {
     },
   },
 });
+
+UserModel.hasMany(BuyModel);
+StockModel.hasMany(BuyModel);
 
 module.exports = {
   create: async function (buy) {
