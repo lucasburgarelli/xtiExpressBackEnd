@@ -92,9 +92,3 @@ exports.delete = async (req, res, next) => {
     res.status(400).json(fail(err.message.split(",\n")));
   }
 };
-
-try {
-  // AQUI
-} catch (err) {
-  res.status(400).json(fail(err.message.split(",\n")));
-}
