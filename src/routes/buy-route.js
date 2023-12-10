@@ -3,8 +3,9 @@ const router = express.Router();
 
 const controller = require("../controllers/buy-controller");
 
-router.get("/", controller.get);
+router.post("/:code", controller.postBuy);
 router.post("/", controller.post);
+router.get("/", controller.get);
 router.put("/", controller.put);
 router.delete("/", controller.delete);
 router.get("/", controller.getByCode);

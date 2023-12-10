@@ -15,23 +15,7 @@ exports.post = async(req, res, next) => {
 
 exports.postSell = async (req, res, next) => {
     try {
-        let sell = await SellModel.readByPk(req.query.cpf, req.body.code, req.query.date, req.query.time)
-        let userMoney = await UserModel.readByPK(req.query.cpf).use_money
-        let stockPrice = await StockModel.readByPK(req.body.code).sto_price
-        let quantity = req.query.quantity
         
-        if(use_money >= (sto_price * quantity)) 
-            res.status(400).json(fail("User money not enough."))
-        else{
-            let sell = await SellModel.create({
-                use_cpf: req.query.cpf,
-                sto_code: req.body.code,
-                sel_amount: quantity,
-                sel_mediumprice: stockPrice
-            })
-            if(!sell) res.status(400).json(fail(sell))
-            else res.status(201).json(sucess(sell))
-    }
     } catch (err) {
         res.status(400).json(fail(err.message.split(",\n")))
     }
