@@ -2,9 +2,13 @@ const StockModel = require("../models/stock");
 const { sucess, fail } = require("../helpers/response");
 
 exports.post = async (req, res, next) => {
-  let stock = await StockModel.create(req.body);
-  if (!stock) res.status(403).json(fail(stock));
-  else res.status(200).json(sucess(stock));
+  try{
+    let stock = await StockModel.create(req.body);
+    res.status(200).json(sucess(stock));
+    
+  }catch(err){
+    res.status(403).json(fail(err.message.split(",\n")));
+  }
 };
 
 exports.get = async (req, res, next) => {

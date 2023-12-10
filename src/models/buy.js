@@ -1,7 +1,7 @@
 const { DataTypes, Op } = require("sequelize");
 const sequelize = require("../helpers/connection");
-const UserModel = require("../models/user");
-const StockModel = require("../models/stock");
+const UserModel = require("../models/user").UserModel;
+const StockModel = require("../models/stock").StockModel;
 
 const BuyModel = sequelize.define("Buy", {
   use_cpf: {
@@ -66,8 +66,12 @@ const BuyModel = sequelize.define("Buy", {
   },
 });
 
-UserModel.hasMany(BuyModel);
-StockModel.hasMany(BuyModel);
+UserModel.hasMany(BuyModel, {as : "UserBuy", foreignKey : "use_cpf"});
+StockModel.hasMany(BuyModel, {as : "StockBuy", foreignKey : "sto_code"});
+
+BuyModel.belongsTo(UserModel, {foreignKey : "use_cpf"});
+BuyModel.belongsTo(StockModel, {foreignKey : "sto_code"});
+
 
 module.exports = {
   create: async function (buy) {

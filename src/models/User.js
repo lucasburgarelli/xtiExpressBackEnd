@@ -15,7 +15,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_name: {
-    type: DataType.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notNull: true,
@@ -26,7 +26,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_password: {
-    type: DataType.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notNull: true,
@@ -37,7 +37,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_birthdate: {
-    type: DataType.DATE,
+    type: DataTypes.DATE,
     allowNull: false,
     validate: {
       notNull: true,
@@ -45,7 +45,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_money: {
-    type: DataType.DECIMAL,
+    type: DataTypes.DECIMAL,
     allowNull: false,
     validate: {
       notNull: true,
@@ -53,7 +53,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_privileges: {
-    type: DataType.STRING,
+    type: DataTypes.STRING,
     allowNull: false,
     validate: {
       notNull: true,
@@ -94,4 +94,5 @@ module.exports = {
     });
     return user;
   },
+  UserModel
 };

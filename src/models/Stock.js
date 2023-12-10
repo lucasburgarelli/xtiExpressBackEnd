@@ -55,7 +55,6 @@ const StockModel = sequelize.define("Stock",
 
 module.exports = {
     create: async function(stock){
-        await console.log(stock)
         const stockNew = await StockModel.create(stock)
         return stockNew
     },
@@ -82,5 +81,6 @@ module.exports = {
     },
     readByCode: async function(code){
         return await StockModel.findByPk(code)
-    }
+    },
+    StockModel
 }
