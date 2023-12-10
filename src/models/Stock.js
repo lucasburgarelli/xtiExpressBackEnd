@@ -45,7 +45,7 @@ const StockModel = sequelize.define("Stock",
             }
         },
         sto_firstdate: {
-            type: DataTypes.DATE,
+            type: DataTypes.DATEONLY,
             validate: {
                 isDate: true
             }

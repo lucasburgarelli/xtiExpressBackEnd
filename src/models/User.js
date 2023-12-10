@@ -37,7 +37,7 @@ const UserModel = sequelize.define("User", {
     },
   },
   use_birthdate: {
-    type: DataTypes.DATE,
+    type: DataTypes.DATEONLY,
     allowNull: false,
     validate: {
       notNull: true,
