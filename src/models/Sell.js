@@ -66,11 +66,11 @@ const SellModel = sequelize.define("Sell", {
   },
 });
 
-UserModel.hasMany(SellModel, {as : "UserSell", foreignKey : "use_cpf"});
-StockModel.hasMany(SellModel, {as : "StockSell", foreignKey : "sto_code"});
+UserModel.hasMany(SellModel, { as: "UserSell", foreignKey: "use_cpf" });
+StockModel.hasMany(SellModel, { as: "StockSell", foreignKey: "sto_code" });
 
-SellModel.belongsTo(UserModel, {foreignKey : "use_cpf"});
-SellModel.belongsTo(StockModel, {foreignKey : "sto_code"});
+SellModel.belongsTo(UserModel, { foreignKey: "use_cpf" });
+SellModel.belongsTo(StockModel, { foreignKey: "sto_code" });
 
 module.exports = {
   create: async function (sell) {
@@ -113,5 +113,14 @@ module.exports = {
       },
     });
     return sell;
+  },
+  readByCpfCode: async function (cpf, code) {
+    const buy = await SellModel.findOne({
+      where: {
+        use_cpf: cpf,
+        sto_code: code,
+      },
+    });
+    return buy;
   },
 };
