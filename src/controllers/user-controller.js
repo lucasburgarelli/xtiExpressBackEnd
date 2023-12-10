@@ -14,10 +14,20 @@ exports.get = async (req, res, next) => {
 };
 
 exports.getByCode = async (req, res, next) => {
-  let user = await UserModel.readByCode(req.params.cpf);
+  let user = await UserModel.readByPk(req.params.cpf);
   if (!user) res.status(404).json(fail(user));
   else res.status(200).json(sucess(user));
 };
+
+exports.getLogin = async (req, res, next) => {
+  try {
+    let user = await UserModel.readLogin(req.params.cpf, req.params.password);
+    if (!users) res.status(401).json(fail("CPF or password wrong"));
+    else res.status(200).json(sucess(users));
+  } catch (err) {
+    res.status(400).json(fail(err.message.split(",\n")));
+  }
+}
 
 exports.put = async (req, res, next) => {
   let user = await UserModel.update(req.params.cpf, req.body);

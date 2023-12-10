@@ -61,6 +61,12 @@ module.exports = {
     read: async function(){
         return await StockModel.findAll()
     },
+    readPagination: async function(limit, offset){
+        return await StockModel.findAndCountAll({
+            offset: offset,
+            limit: limit
+          })
+    },
     update: async function(code, stock){
         await StockModel.update(stock,
             {

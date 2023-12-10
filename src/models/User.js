@@ -94,5 +94,14 @@ module.exports = {
     });
     return user;
   },
+  readLogin: async function(cpf, password){
+    const user = await UserModel.findOne({
+      where: {
+        use_cpf: cpf,
+        use_password: password
+      },
+    });
+    return user;
+  },
   UserModel
 };
