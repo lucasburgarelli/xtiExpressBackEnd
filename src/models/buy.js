@@ -120,4 +120,12 @@ module.exports = {
     });
     return buy;
   },
+  readByCpf: async function (cpf) {
+    const buy = await BuyModel.findOne({
+      where: {
+        use_cpf: cpf,
+      },
+    });
+    return buy;
+  },
 };

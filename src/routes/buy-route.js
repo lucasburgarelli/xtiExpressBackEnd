@@ -3,7 +3,6 @@ const router = express.Router();
 
 const controller = require("../controllers/buy-controller");
 
-router.post("/:code", controller.postBuy);
 router.post("/", controller.post);
 router.get("/", controller.get);
 router.put("/", controller.put);

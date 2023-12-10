@@ -15,13 +15,13 @@ exports.post = async (req, res, next) => {
 
 exports.postSell = async (req, res, next) => {
   try {
-    let buys = await BuyModel.readByCpfCode(req.params.cpf, req.body.code);
-    let sells = await SellModel.readByCpfCode(req.params.cpf, req.body.code);
-    let user = await UserModel.readByPK(req.params.cpf);
+    let buys = await BuyModel.readByCpfCode(req.query.cpf, req.query.code);
+    let sells = await SellModel.readByCpfCode(req.query.cpf, req.query.code);
+    let user = await UserModel.readByPK(req.query.cpf);
     if (!buys) res.status(404).json(fail(buys));
     else {
       if (sells) {
-        let stock = await StockModel.readByCode(req.body.code);
+        let stock = await StockModel.readByCode(req.query.code);
         let amount = 0;
         sells.forEach((sell) => {
           amount -= sell.sel_amount;
@@ -29,30 +29,30 @@ exports.postSell = async (req, res, next) => {
         buys.forEach((sell) => {
           amount += sell.buy_amount;
         });
-        if (amount <= req.params.amount) res.status(404).json(fail(buys));
+        if (amount <= req.query.amount) res.status(404).json(fail(buys));
         else {
           let sell = await SellModel.create({
-            use_cpf: req.params.cpf,
-            sto_code: req.body.code,
-            sel_amount: req.params.amount,
-            sel_mediumprice: req.params.mediumprice,
+            use_cpf: req.query.cpf,
+            sto_code: req.query.code,
+            sel_amount: req.query.amount,
+            sel_mediumprice: req.query.mediumprice,
           });
           res.status(201).json(sucess(sell));
 
-          user.use_money += req.params.amount * stock.sto_price;
-          await UserModel.update(req.params.cpf, user);
+          user.use_money += req.query.amount * stock.sto_price;
+          await UserModel.update(req.query.cpf, user);
         }
       } else {
         let sell = await SellModel.create({
-          use_cpf: req.params.cpf,
-          sto_code: req.body.code,
-          sel_amount: req.params.amount,
+          use_cpf: req.query.cpf,
+          sto_code: req.query.code,
+          sel_amount: req.query.amount,
           sel_mediumprice: stock.sto_price,
         });
         res.status(201).json(sucess(sell));
 
-        user.use_money += req.params.amount * stock.sto_price;
-        await UserModel.update(req.params.cpf, user);
+        user.use_money += req.query.amount * stock.sto_price;
+        await UserModel.update(req.query.cpf, user);
       }
     }
   } catch (err) {
