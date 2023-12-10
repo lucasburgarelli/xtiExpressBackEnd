@@ -5,6 +5,7 @@ const controller = require("../controllers/sell-controller")
 
 router.get("/", controller.get)
 router.post("/", controller.post)
+router.post("/:code", controller.postSell)
 router.put("/", controller.put)
 router.delete("/", controller.delete)
 router.get("/", controller.getByCode)
