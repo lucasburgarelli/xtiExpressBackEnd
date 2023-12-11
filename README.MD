@@ -1,4 +1,4 @@
 Projeto feito para a disciplina de Programação Web BackEnd
 por
-Lucas Moraes
+Lucas Moraes e
 Nathã Souza
