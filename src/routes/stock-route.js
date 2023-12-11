@@ -3,7 +3,7 @@ const router = express.Router();
 
 const controller = require("../controllers/stock-controller");
 const buycontroller = require("../controllers/buy-controller");
-const sellcontroller = require("../controllers/buy-controller");
+const sellcontroller = require("../controllers/sell-controller");
 
 router.post("/buy", buycontroller.postBuy);
 router.post("/sell", sellcontroller.postSell);
