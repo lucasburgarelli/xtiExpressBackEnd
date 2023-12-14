@@ -70,6 +70,12 @@ module.exports = {
   read: async function () {
     return UserModel.findAll();
   },
+  readPagination: async function (limit, offset) {
+    return await UserModel.findAndCountAll({
+      offset: offset,
+      limit: limit,
+    });
+  },
   update: async function (cpf, user) {
     const userUpdate = await UserModel.update(user, {
       where: {
@@ -94,14 +100,14 @@ module.exports = {
     });
     return user;
   },
-  readLogin: async function(cpf, password){
+  readLogin: async function (cpf, password) {
     const user = await UserModel.findOne({
       where: {
         use_cpf: cpf,
-        use_password: password
+        use_password: password,
       },
     });
     return user;
   },
-  UserModel
+  UserModel,
 };

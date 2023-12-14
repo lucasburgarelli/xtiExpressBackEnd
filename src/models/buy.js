@@ -80,6 +80,12 @@ module.exports = {
   read: async function () {
     return await BuyModel.findAll();
   },
+  readPagination: async function (limit, offset) {
+    return await BuyModel.findAndCountAll({
+      offset: offset,
+      limit: limit,
+    });
+  },
   update: async function (cpf, code, date, time, buy) {
     const buyUpdate = await BuyModel.update(buy, {
       where: {
