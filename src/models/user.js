@@ -30,10 +30,6 @@ const UserModel = sequelize.define("User", {
     allowNull: false,
     validate: {
       notNull: true,
-      len: {
-        is: /^[0-9a-f]{100}$/i,
-        msg: "",
-      },
     },
   },
   use_birthdate: {
