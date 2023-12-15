@@ -57,7 +57,7 @@ const UserModel = sequelize.define("User", {
     allowNull: false,
     validate: {
       notNull: true,
-      isIn: [("A", "I")],
+      isIn: [["A", "I"]],
     },
   },
 });

@@ -1,5 +1,6 @@
 const UserModel = require("../models/user");
 const { sucess, fail } = require("../helpers/response");
+const auth = require("../helpers/authenticator");
 
 exports.post = async (req, res, next) => {
   try {
@@ -33,9 +34,12 @@ exports.getByCode = async (req, res, next) => {
 
 exports.getLogin = async (req, res, next) => {
   try {
-    let user = await UserModel.readLogin(req.params.cpf, req.params.password);
-    if (!users) res.status(401).json(fail("CPF or password wrong"));
-    else res.status(200).json(sucess(users));
+    let user = await UserModel.readLogin(req.query.cpf, req.query.password);
+    if (!user) res.status(401).json(fail("CPF or password wrong"));
+    else{
+      let token = auth.autorizate(user.use_cpf, user.use_privileges)
+      res.status(200).json(sucess(token));
+    }
   } catch (err) {
     res.status(400).json(fail(err.message.split(",\n")));
   }
