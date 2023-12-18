@@ -27,8 +27,8 @@ buy_mediumprice decimal(9, 2) not null,
 buy_date date not null,
 buy_time time not null,
 primary key(use_cpf, sto_code, buy_date, buy_time),
-foreign key(use_cpf) references user(use_cpf),
-foreign key(sto_code) references stock(sto_code)
+foreign key(use_cpf) references users(use_cpf),
+foreign key(sto_code) references stocks(sto_code)
 );
 
 create table sells(

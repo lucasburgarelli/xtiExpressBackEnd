@@ -60,8 +60,7 @@ const BuyModel = sequelize.define("Buy", {
     primaryKey: true,
     allowNull: false,
     validate: {
-      notNull: true,
-      isTime: true,
+      notNull: true
     },
   },
 });

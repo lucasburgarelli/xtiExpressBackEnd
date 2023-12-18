@@ -60,8 +60,7 @@ const SellModel = sequelize.define("Sell", {
     primaryKey: true,
     allowNull: false,
     validate: {
-      notNull: true,
-      isTime: true,
+      notNull: true
     },
   },
 });
