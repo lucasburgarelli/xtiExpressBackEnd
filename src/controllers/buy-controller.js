@@ -5,7 +5,7 @@ const { sucess, fail } = require("../helpers/response");
 
 exports.post = async (req, res, next) => {
   try {
-    let buy = await BuyModel.create(req.body);
+    let buy = await BuyModel.create(req.query);
     if (!buy) res.status(403).json(fail(buy));
     else res.status(200).json(sucess(buy));
   } catch (err) {
@@ -74,7 +74,7 @@ exports.put = async (req, res, next) => {
       req.query.code,
       req.query.date,
       req.query.time,
-      req.body
+      req.query
     );
     if (!buy) res.status(404).json(fail(buy));
     else res.status(200).json(sucess(buy));

@@ -5,7 +5,7 @@ const validator = require("../validators/user-validator");
 
 exports.post = async (req, res, next) => {
   try {
-    let user = await UserModel.create(req.body);
+    let user = await UserModel.create(req.query);
     if (!user) res.status(403).json(fail(user));
     else res.status(200).json(sucess(user));
   } catch (err) {
@@ -52,7 +52,7 @@ exports.getLogin = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-    let user = await UserModel.update(req.params.cpf, req.body);
+    let user = await UserModel.update(req.params.cpf, req.query);
     if (!user) res.status(404).json(fail(user));
     else res.status(200).json(sucess(user));
   } catch (err) {

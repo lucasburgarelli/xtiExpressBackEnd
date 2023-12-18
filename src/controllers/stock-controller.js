@@ -4,7 +4,7 @@ const BuyModel = require("../models/buy");
 
 exports.getMy = async (req, res, next) => {
   try {
-    let buys = await BuyModel.readByCpf(req.body.cpf);
+    let buys = await BuyModel.readByCpf(req.query.cpf);
     if (!buys) res.status(404).json(fail(buys));
     else {
       let stocks = [];
@@ -21,7 +21,7 @@ exports.getMy = async (req, res, next) => {
 
 exports.post = async (req, res, next) => {
   try {
-    let stock = await StockModel.create(req.body);
+    let stock = await StockModel.create(req.query);
     res.status(201).json(sucess(stock));
   } catch (err) {
     res.status(400).json(fail(err.message.split(",\n")));
@@ -63,7 +63,7 @@ exports.getPagination = async (req, res, next) => {
 
 exports.put = async (req, res, next) => {
   try {
-    let stock = await StockModel.update(req.params.code, req.body);
+    let stock = await StockModel.update(req.params.code, req.query);
     if (!stock) res.status(404).json(fail(stock));
     else res.status(200).json(sucess(stock));
   } catch (err) {
