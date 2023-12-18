@@ -39,6 +39,6 @@ sel_mediumprice decimal(9, 2) not null,
 sel_date date not null,
 sel_time time not null,
 primary key(use_cpf, sto_code, sel_date, sel_time),
-foreign key(use_cpf) references user(use_cpf),
-foreign key(sto_code) references stock(sto_code)
+foreign key(use_cpf) references users(use_cpf),
+foreign key(sto_code) references stocks(sto_code)
 );
