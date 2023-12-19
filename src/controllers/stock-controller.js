@@ -3,23 +3,6 @@ const StockModel = require("../models/stock");
 const BuyModel = require("../models/buy");
 const validator = require("../validators/stock-validator");
 
-exports.getMy = async (req, res, next) => {
-  try {
-    let buys = await BuyModel.readByCpf(req.query.cpf);
-    if (!buys) res.status(404).json(fail(buys));
-    else {
-      let stocks = [];
-      await buys.forEach((buy) => {
-        stocks.push(StockModel.readByCode(buy.sto_code));
-      });
-      if (!stocks) res.status(404).json(fail(stocks));
-      else res.status(200).json(sucess(stocks));
-    }
-  } catch (err) {
-    res.status(400).json(fail(err.message.split(",\n")));
-  }
-};
-
 exports.post = async (req, res, next) => {
   try {
     let stock = await StockModel.create(req.query);
@@ -57,6 +40,23 @@ exports.getPagination = async (req, res, next) => {
     );
     if (!stocks) res.status(404).json(fail(stocks));
     else res.status(200).json(sucess(stocks));
+  } catch (err) {
+    res.status(400).json(fail(err.message.split(",\n")));
+  }
+};
+
+exports.getMy = async (req, res, next) => {
+  try {
+    let buys = await BuyModel.readByCpf(req.query.cpf);
+    if (!buys) res.status(404).json(fail(buys));
+    else {
+      let stocks = [];
+      await buys.forEach((buy) => {
+        stocks.push(StockModel.readByCode(buy.sto_code));
+      });
+      if (!stocks) res.status(404).json(fail(stocks));
+      else res.status(200).json(sucess(stocks));
+    }
   } catch (err) {
     res.status(400).json(fail(err.message.split(",\n")));
   }

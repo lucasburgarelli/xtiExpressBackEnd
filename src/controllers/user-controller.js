@@ -50,6 +50,19 @@ exports.getLogin = async (req, res, next) => {
   }
 };
 
+exports.getPagination = async (req, res, next) => {
+  try {
+    let stocks = await UserModel.readPagination(
+      req.params.limit,
+      req.params.offset
+    );
+    if (!stocks) res.status(404).json(fail(stocks));
+    else res.status(200).json(sucess(stocks));
+  } catch (err) {
+    res.status(400).json(fail(err.message.split(",\n")));
+  }
+};
+
 exports.put = async (req, res, next) => {
   try {
     let user = await UserModel.update(req.params.cpf, req.query);
