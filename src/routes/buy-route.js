@@ -5,6 +5,7 @@ const controller = require("../controllers/buy-controller");
 
 router.post("/", controller.post);
 router.get("/", controller.get);
+router.get("/pagination", controller.getPagination);
 router.put("/", controller.put);
 router.delete("/", controller.delete);
 router.get("/", controller.getByCode);
