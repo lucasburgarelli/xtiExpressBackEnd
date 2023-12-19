@@ -12,10 +12,10 @@ exports.post = async (req, res, next) => {
     let buy = await BuyModel.create({
       use_cpf: req.query.cpf,
       sto_code: req.query.code,
-      sel_amount: req.query.amount,
-      sel_mediumprice: req.query.mediumprice,
-      sel_date: req.query.date,
-      sel_time: req.query.time
+      buy_amount: req.query.amount,
+      buy_mediumprice: req.query.mediumprice,
+      buy_date: req.query.date,
+      buy_time: req.query.time
     });
     if (!buy) res.status(403).json(fail(buy));
     else res.status(201).json(sucess(buy));
@@ -37,8 +37,8 @@ exports.postBuy = async (req, res, next) => {
       let buy = await BuyModel.create({
         use_cpf: req.query.cpf,
         sto_code: req.query.code,
-        sel_amount: req.query.amount,
-        sel_mediumprice: stockPrice,
+        buy_amount: req.query.amount,
+        buy_mediumprice: stockPrice,
       });
       if (!buy) res.status(400).json(fail(buy));
       else res.status(201).json(sucess(buy));
@@ -95,8 +95,8 @@ exports.put = async (req, res, next) => {
       {
         use_cpf: req.query.cpf,
         sto_code: req.query.code,
-        sel_amount: req.query.amount,
-        sel_mediumprice: req.query.mediumprice,
+        buy_amount: req.query.amount,
+        buy_mediumprice: req.query.mediumprice,
         buy_date: req.query.date,
         buy_time: req.query.time
       }

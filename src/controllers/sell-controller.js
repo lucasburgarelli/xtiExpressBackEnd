@@ -4,10 +4,19 @@ const UserModel = require("../models/user");
 const BuyModel = require("../models/buy");
 const StockModel = require("../models/stock");
 const validator = require("../validators/sell-validator");
+const pagValidator = require("../validators/pagination-validatior");
 
 exports.post = async (req, res, next) => {
   try {
-    let sell = await SellModel.create(req.query);
+    await validator.sellSchema.validateAsync(req.query)
+    let sell = await SellModel.create({
+      use_cpf: req.query.cpf,
+      sto_code: req.query.code,
+      sel_amount: req.query.amount,
+      sel_mediumprice: req.query.mediumprice,
+      sel_date: req.query.date,
+      sel_time: req.query.time
+    });
     res.status(201).json(sucess(sell));
   } catch (err) {
     res.status(400).json(fail(err.message.split(",\n")));
