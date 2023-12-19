@@ -1,6 +1,6 @@
 const Joi = require("joi");
 
-exports.sellSchema = Joi.object({
+exports.buySchema = Joi.object({
   cpf: Joi.string()
     .length(11)
     .min(11)
@@ -13,7 +13,18 @@ exports.sellSchema = Joi.object({
   time: Joi.string().pattern(/(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)/).required(),
 });
 
-exports.sellPrimarySchema = Joi.object({
+exports.buyPrimarySchema = Joi.object({
+  cpf: Joi.string()
+    .length(11)
+    .min(11)
+    .pattern(/^[0-9]+$/)
+    .required(),
+  code: Joi.string().min(3).max(11).required(),
+  date: Joi.date().required(),
+  time: Joi.string().pattern(/(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)/).required(),
+});
+
+exports.buyActionSchema = Joi.object({
   cpf: Joi.string()
     .length(11)
     .min(11)
@@ -23,3 +34,4 @@ exports.sellPrimarySchema = Joi.object({
   amount: Joi.number().integer().required(),
   mediumprice: Joi.number().required(),
 });
+

@@ -85,13 +85,13 @@ module.exports = {
       limit: limit,
     });
   },
-  update: async function (cpf, code, date, time, buy) {
+  update: async function (buy) {
     const buyUpdate = await BuyModel.update(buy, {
       where: {
-        use_cpf: cpf,
-        sto_code: code,
-        buy_date: date,
-        buy_time: time,
+        use_cpf: buy.use_cpf,
+        sto_code: buy.sto_code,
+        buy_date: buy.buy_date,
+        buy_time: buy.buy_time,
       },
     });
   },
