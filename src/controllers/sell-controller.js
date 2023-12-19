@@ -1,8 +1,9 @@
+const { sucess, fail } = require("../helpers/response");
 const SellModel = require("../models/sell");
 const UserModel = require("../models/user");
 const BuyModel = require("../models/buy");
 const StockModel = require("../models/stock");
-const { sucess, fail } = require("../helpers/response");
+const validator = require("../validators/sell-validator");
 
 exports.post = async (req, res, next) => {
   try {

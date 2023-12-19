@@ -6,7 +6,7 @@ exports.sellSchema = Joi.object({
     amount: Joi.number().integer().required(),
     mediumprice: Joi.number().required(),
     date: Joi.date().required(),
-    time: Joi.time().required()
+    time: Joi.string().pattern(/(?:[01]\d|2[0-3]):(?:[0-5]\d):(?:[0-5]\d)/).required()
 })
 
 exports.sellPrimarySchema = Joi.object({

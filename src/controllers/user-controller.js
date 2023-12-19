@@ -1,5 +1,5 @@
-const UserModel = require("../models/user");
 const { sucess, fail } = require("../helpers/response");
+const UserModel = require("../models/user");
 const auth = require("../helpers/authenticator");
 const validator = require("../validators/user-validator");
 

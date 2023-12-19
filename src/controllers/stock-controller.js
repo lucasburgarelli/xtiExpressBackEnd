@@ -1,6 +1,7 @@
-const StockModel = require("../models/stock");
 const { sucess, fail } = require("../helpers/response");
+const StockModel = require("../models/stock");
 const BuyModel = require("../models/buy");
+const validator = require("../validators/stock-validator");
 
 exports.getMy = async (req, res, next) => {
   try {

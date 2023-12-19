@@ -92,6 +92,13 @@
     "/stock/my": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
