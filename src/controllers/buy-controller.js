@@ -17,8 +17,7 @@ exports.post = async (req, res, next) => {
       buy_date: req.query.date,
       buy_time: req.query.time
     });
-    if (!buy) res.status(403).json(fail(buy));
-    else res.status(201).json(sucess(buy));
+    res.status(201).json(sucess(buy));
   } catch (err) {
     res.status(400).json(fail(err.message.split(",\n")));
   }
