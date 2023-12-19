@@ -16,6 +16,11 @@
         "description": "",
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
             "name": "cpf",
             "in": "query",
             "type": "string"
@@ -26,17 +31,7 @@
             "type": "string"
           },
           {
-            "name": "date",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "time",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "quantity",
+            "name": "amount",
             "in": "query",
             "type": "string"
           }
@@ -47,6 +42,9 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       }
@@ -55,6 +53,11 @@
       "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "cpf",
             "in": "query",
@@ -83,6 +86,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -93,6 +99,11 @@
       "get": {
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "cpf",
             "in": "query",
@@ -106,6 +117,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "403": {
+            "description": "Forbidden"
+          },
           "404": {
             "description": "Not Found"
           }
@@ -115,6 +129,18 @@
     "/stock/pagination": {
       "get": {
         "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "200": {
             "description": "OK"
@@ -145,12 +171,50 @@
       },
       "post": {
         "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "companyname",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sector",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "firstdate",
+            "in": "query",
+            "type": "string"
+          }
+        ],
         "responses": {
           "201": {
             "description": "Created"
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           }
         }
       }
@@ -186,6 +250,36 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "companyname",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "price",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "sector",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "firstdate",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
@@ -194,6 +288,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -208,6 +308,11 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
           }
         ],
         "responses": {
@@ -216,6 +321,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -224,9 +335,14 @@
       }
     },
     "/sell/": {
-      "get": {
+      "post": {
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "cpf",
             "in": "query",
@@ -234,6 +350,16 @@
           },
           {
             "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "mediumprice",
             "in": "query",
             "type": "string"
           },
@@ -248,111 +374,15 @@
             "type": "string"
           }
         ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "post": {
-        "description": "",
         "responses": {
           "201": {
             "description": "Created"
           },
           "400": {
             "description": "Bad Request"
-          }
-        }
-      },
-      "put": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "query",
-            "type": "string"
           },
-          {
-            "name": "code",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "date",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "time",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      },
-      "delete": {
-        "description": "",
-        "parameters": [
-          {
-            "name": "cpf",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "code",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "date",
-            "in": "query",
-            "type": "string"
-          },
-          {
-            "name": "time",
-            "in": "query",
-            "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/buy/": {
-      "post": {
-        "description": "",
-        "responses": {
-          "200": {
-            "description": "OK"
-          },
-          "400": {
-            "description": "Bad Request"
+          "401": {
+            "description": "Unauthorized"
           },
           "403": {
             "description": "Forbidden"
@@ -399,6 +429,182 @@
         "description": "",
         "parameters": [
           {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "mediumprice",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "delete": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/sell/pagination": {
+      "get": {
+        "description": "",
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/buy/": {
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "mediumprice",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          }
+        }
+      },
+      "get": {
+        "description": "",
+        "parameters": [
+          {
             "name": "cpf",
             "in": "query",
             "type": "string"
@@ -431,9 +637,71 @@
           }
         }
       },
+      "put": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "code",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "amount",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "mediumprice",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "date",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "time",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
       "delete": {
         "description": "",
         "parameters": [
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
           {
             "name": "cpf",
             "in": "query",
@@ -451,6 +719,40 @@
           },
           {
             "name": "time",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
+          },
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      }
+    },
+    "/buy/pagination": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
             "in": "query",
             "type": "string"
           }
@@ -527,6 +829,41 @@
             "in": "path",
             "required": true,
             "type": "string"
+          },
+          {
+            "name": "authorization",
+            "in": "header",
+            "type": "string"
+          },
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "birthdate",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "money",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "privileges",
+            "in": "query",
+            "type": "string"
           }
         ],
         "responses": {
@@ -535,6 +872,12 @@
           },
           "400": {
             "description": "Bad Request"
+          },
+          "401": {
+            "description": "Unauthorized"
+          },
+          "403": {
+            "description": "Forbidden"
           },
           "404": {
             "description": "Not Found"
@@ -549,25 +892,7 @@
             "in": "path",
             "required": true,
             "type": "string"
-          }
-        ],
-        "responses": {
-          "200": {
-            "description": "OK"
           },
-          "400": {
-            "description": "Bad Request"
-          },
-          "404": {
-            "description": "Not Found"
-          }
-        }
-      }
-    },
-    "/user/": {
-      "get": {
-        "description": "",
-        "parameters": [
           {
             "name": "authorization",
             "in": "header",
@@ -581,6 +906,9 @@
           "400": {
             "description": "Bad Request"
           },
+          "401": {
+            "description": "Unauthorized"
+          },
           "403": {
             "description": "Forbidden"
           },
@@ -588,8 +916,10 @@
             "description": "Not Found"
           }
         }
-      },
-      "post": {
+      }
+    },
+    "/user/": {
+      "get": {
         "description": "",
         "responses": {
           "200": {
@@ -598,8 +928,79 @@
           "400": {
             "description": "Bad Request"
           },
-          "403": {
-            "description": "Forbidden"
+          "404": {
+            "description": "Not Found"
+          }
+        }
+      },
+      "post": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "cpf",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "name",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "password",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "birthdate",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "money",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "privileges",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Created"
+          },
+          "400": {
+            "description": "Bad Request"
+          }
+        }
+      }
+    },
+    "/user/pagination": {
+      "get": {
+        "description": "",
+        "parameters": [
+          {
+            "name": "limit",
+            "in": "query",
+            "type": "string"
+          },
+          {
+            "name": "offset",
+            "in": "query",
+            "type": "string"
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "OK"
+          },
+          "400": {
+            "description": "Bad Request"
+          },
+          "404": {
+            "description": "Not Found"
           }
         }
       }
